@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stock Comparison Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="chart.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+    
+    <div class="form-container">
+        <div class="form-group">
+          <label for="startDate">Start Date:</label>
+          <input type="date" id="date1" name="startDate">
+          
+          <label for="endDate">End Date:</label>
+          <input type="date" id="date2" name="endDate">
+        </div>
+    
+        <div id="monthSelectDiv" style="display: none;">
+            <label for="monthSelect">Select Month:</label>
+            <select id="monthSelect" onchange="handleMonthSelectChange()"></select>
+            <button onclick="fetchDataAndCreateChart()">Fetch now</button>
+        </div>
+      </div>
+      
+    
+      <h2 style="text-align: center;">Stock Chart</h2>
+   
+    <div class="card text-center m-5">
+        <canvas id="lineChart"></canvas>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="chart.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            let url = "http://127.0.0.1:5000/get_data"
+            console.log(url)
+            let reqBody ={
+                startDate: "2023-01-01",
+                endDate: "2023-01-01",
+                branch: "DAN002",
+                itemCode: "SAL008"
+            }
+
+            let reqOpt = {
+                method : 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(reqBody),
+            }
+
+            // axios.post(url, reqBody)
+            // .then((response)=>{
+            //     console.log(response)
+            // })
+
+            // fetch(url, reqOpt)
+            // .then(response => {
+
+            //     console.log(response)
+
+            //     if (!response.ok) {
+            //         throw new Error('ERR1 => Network response was not ok');
+            //     }
+            //     return response.json();
+            // }).then(data => {
+            //     console.log('Response from the API:', data);
+            // })
+            // .catch(error => {
+            //     console.error('Error:', error);
+            // });
+        });
+    </script>
+    
+    
+</body>
+</html>
