@@ -2,9 +2,9 @@ import pandas as pd
 import mysql.connector
 
 db_config = {
-    'host': '142.93.204.108',
+    'host': '',
     'user': 'interns',
-    'password': 'Mega!@#2050',
+    'password': '',
     'database': 'DataAnalytics'
 }
 
